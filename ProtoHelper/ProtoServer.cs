@@ -55,7 +55,8 @@ namespace RibCom.ProtoHelper
 				if (_server.Peers.TryGetValue(peerId, out IPeer peer))
 				{
 					string compressedTypeUrl = _urlCompressor.GetCompressedTypeUrl(message);
-					Any any = Any.Pack(message, compressedTypeUrl);
+					Any any = Any.Pack(message);
+					any.TypeUrl = compressedTypeUrl;
 					peer.Send(any.ToByteArray(), sendMode, channel);
 				}
 			});
