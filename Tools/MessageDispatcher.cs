@@ -94,6 +94,13 @@ namespace RibCom.Tools
 				return null;
 		}
 
+		public IMessage UnpackMessage(Any message)
+		{
+			var type = _solver.ResolveType(message);
+
+			return UnpackMessage(message, type);
+		}
+
 		protected IMessage UnpackMessage(Any message, System.Type type)
 		{
 			IMessage unpackedMessage;
