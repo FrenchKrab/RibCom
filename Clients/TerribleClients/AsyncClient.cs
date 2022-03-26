@@ -1,9 +1,9 @@
-﻿using Google.Protobuf;
-using RibCom.Tools;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
+using Google.Protobuf;
+using RibCom.Tools;
 
 namespace RibCom.TerribleClients
 {
@@ -59,7 +59,7 @@ namespace RibCom.TerribleClients
                 {
                     socket.BeginSend(currentSendingBytes, sentByteCount, currentSendingBytes.Length - sentByteCount, 0, new AsyncCallback(BytesSentCallback), null);
                 }
-                catch(Exception e)
+                catch (Exception)
                 {
                     FailedMessage?.Invoke();
                 }
@@ -98,7 +98,7 @@ namespace RibCom.TerribleClients
 
         }
 
-        public AsyncClient (Socket socket, int id = DefaultId) : base(socket, id)
+        public AsyncClient(Socket socket, int id = DefaultId) : base(socket, id)
         {
             State = new ConnectionState();
             messageSender = new MessageSender(socket);
@@ -159,7 +159,7 @@ namespace RibCom.TerribleClients
         /// <param name="ar"></param>
         private void ReceivedCallback(IAsyncResult ar)
         {
-            if(!Dead)
+            if (!Dead)
             {
                 // Retrieve the state object and the handler socket
                 // from the asynchronous state object.

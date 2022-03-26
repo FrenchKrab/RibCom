@@ -1,12 +1,12 @@
-namespace RibCom
+﻿namespace RibCom
 {
 
-	public enum PeerSendMode
-	{
-		Reliable,
-		Unreliable,
-		UnreliableUnsequenced,
-		Instant
-	}
+    public enum PeerSendMode
+    {
+        Reliable,
+        Unreliable,
+        UnreliableUnsequenced,
+        Instant
+    }
 
 }

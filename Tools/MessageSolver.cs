@@ -1,16 +1,16 @@
-﻿using System.Reflection;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace RibCom.Tools
 {
     public class MessageSolver
     {
         private List<Type> _messageTypes = new List<Type>();
-        private Dictionary<Type, MessageDescriptor> _messagesDescriptors 
+        private Dictionary<Type, MessageDescriptor> _messagesDescriptors
             = new Dictionary<Type, MessageDescriptor>();
 
         private readonly HashSet<Assembly> _scannedAssemblies = new HashSet<Assembly>();
@@ -60,7 +60,7 @@ namespace RibCom.Tools
             foreach (var assembly in _scannedAssemblies)
             {
                 ScanAssembly(assembly);
-            }    
+            }
         }
 
         private void ScanAssembly(Assembly assembly)

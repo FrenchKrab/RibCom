@@ -68,7 +68,7 @@ namespace RibCom.TerribleClients
         /// <returns></returns>
         public CallbackClient GetClient(int id)
         {
-            if(_clients.TryGetValue(id, out CallbackClient callbackClient))
+            if (_clients.TryGetValue(id, out CallbackClient callbackClient))
             {
                 return callbackClient;
             }
@@ -107,7 +107,7 @@ namespace RibCom.TerribleClients
         /// <returns></returns>
         private int GetNewId()
         {
-            lastClientId = (lastClientId+1)%(int.MaxValue-1);
+            lastClientId = (lastClientId + 1) % (int.MaxValue - 1);
             return lastClientId;
         }
 
@@ -124,7 +124,7 @@ namespace RibCom.TerribleClients
             int id = client.Id;
 
             CallbackClient c = null;
-            while(c==null && _clients.ContainsKey(id))
+            while (c == null && _clients.ContainsKey(id))
             {
                 if (_clients.TryRemove(id, out c))
                 {

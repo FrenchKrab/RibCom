@@ -1,9 +1,9 @@
-﻿using Google.Protobuf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf;
 
 namespace RibCom.TerribleClients
 {
@@ -16,7 +16,7 @@ namespace RibCom.TerribleClients
         {
             State.SaveBufferFull += OnSaveBufferFull;
         }
-        
+
         public delegate void PacketReceivedHandler(byte[] contentBytes);
         public event PacketReceivedHandler PacketReceived;
         public event Action SocketDied;
@@ -34,7 +34,7 @@ namespace RibCom.TerribleClients
 
         protected override void OnSaveBufferFull()
         {
-            Console.WriteLine("----FULL-----"); 
+            Console.WriteLine("----FULL-----");
             KillClient();
         }
     }

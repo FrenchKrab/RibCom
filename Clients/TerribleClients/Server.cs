@@ -20,7 +20,7 @@ namespace RibCom.TerribleClients
         // Thread signal.  
         private readonly ManualResetEvent allDone = new ManualResetEvent(false);
 
-        
+
 
 
         public void StartListening(int port)
@@ -49,7 +49,7 @@ namespace RibCom.TerribleClients
                     allDone.Reset();
 
                     // Start an asynchronous socket to listen for connections.  
-                    Console.WriteLine("Waiting for a connection... ("+Clients.ClientCount+" clients connected)");
+                    Console.WriteLine("Waiting for a connection... (" + Clients.ClientCount + " clients connected)");
                     listener.BeginAccept(
                         new AsyncCallback(AcceptCallback),
                         listener);
@@ -86,7 +86,7 @@ namespace RibCom.TerribleClients
             //handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
             //    new AsyncCallback(ReadCallback), state);
         }
-        
+
 
         protected void Send(Socket handler, String data)
         {

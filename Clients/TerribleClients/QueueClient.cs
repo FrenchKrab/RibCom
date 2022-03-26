@@ -21,7 +21,7 @@ namespace RibCom.TerribleClients
             public byte[] Content;
         }
 
-        public QueueClient(Socket socket, int id = DefaultId) : base (socket, id)
+        public QueueClient(Socket socket, int id = DefaultId) : base(socket, id)
         { }
 
         public ConcurrentQueue<Message> receivedMessages = new ConcurrentQueue<Message>();
