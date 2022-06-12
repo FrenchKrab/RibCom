@@ -43,11 +43,6 @@ namespace RibCom.Tools
                 {
                     AddToSubcribed(pi[0].ParameterType, o, m);
                 }
-                // foreach (System.Type t in a.ListenedTypes)
-                // {
-                // 	Console.WriteLine($"ok {t}; {o}; {m}");
-                // 	AddToSubcribed(t, o, m);
-                // }
             }
         }
 
@@ -62,13 +57,19 @@ namespace RibCom.Tools
             }
 
             IMessage unpackedMessage = UnpackMessage(message, type);
+            InvokeMessageListeners(unpackedMessage);
+        }
+
+        public void InvokeMessageListeners(IMessage message, uint clientId = 0, bool async = true)
+        {
+            var type = message.GetType();
             if (_subscribedMethods.TryGetValue(type, out List<Subscribing> subs))
             {
                 foreach (var s in subs)
                 {
                     try
                     {
-                        object[] parameters = GetInvokeParameters(unpackedMessage, clientId, s.Method);
+                        object[] parameters = GetInvokeParameters(message, clientId, s.Method);
                         if (parameters != null)
                         {
                             if (async)
