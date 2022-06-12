@@ -75,5 +75,24 @@ namespace RibCom.ProtoHelper
                 }
             });
         }
+
+        public void SimulateReceive(IMessage message, uint author, byte channel = 0)
+        {
+            Parallel.Invoke(() =>
+            {
+                string compressedTypeUrl = _urlCompressor.GetCompressedTypeUrl(message);
+                Any any = Any.Pack(message);
+                any.TypeUrl = compressedTypeUrl;
+
+                var ribMsg = new Message()
+                {
+                    Channel = channel,
+                    Type = MessageContentType.Data,
+                    Source = author,
+                    Data = any.ToByteArray(),
+                };
+                _server.MessageQueue.Enqueue(ribMsg);
+            });
+        }
     }
 }
