@@ -57,7 +57,7 @@ namespace RibCom.Tools
             }
 
             IMessage unpackedMessage = UnpackMessage(message, type);
-            InvokeMessageListeners(unpackedMessage);
+            InvokeMessageListeners(unpackedMessage, clientId, async);
         }
 
         public void InvokeMessageListeners(IMessage message, uint clientId = 0, bool async = true)
