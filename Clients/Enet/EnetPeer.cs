@@ -23,6 +23,8 @@ namespace RibCom.Enet
             _peer.Send(channel, ref packet);
         }
 
+        public void Timeout(uint timeoutLimit, uint timeoutMinimum, uint timeoutMaximum) => _peer.Timeout(timeoutLimit, timeoutMinimum, timeoutMaximum);
+
         private PacketFlags PeerSendModeToPacketFlags(PeerSendMode mode)
         {
             switch (mode)

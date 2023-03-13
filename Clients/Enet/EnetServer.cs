@@ -22,12 +22,15 @@ namespace RibCom.Enet
         private Task _listeningTask;
         private readonly CancellationTokenSource _tokenSource = new CancellationTokenSource();
         private CancellationToken _token;
+        private readonly uint _timeout;
 
         private volatile bool _listening = false;
 
 
-        public EnetServer(string address, ushort port, int maxClients)
+        public EnetServer(string address, ushort port, int maxClients, uint timeout = 10000)
         {
+            _timeout = timeout;
+
             Address a = new Address();
             a.SetHost(address);
             a.Port = port;
@@ -95,7 +98,9 @@ namespace RibCom.Enet
                     else if (netEvent.Type == EventType.Connect)
                     {
                         Console.WriteLine("Client connected - ID: " + netEvent.Peer.ID + ", IP: " + netEvent.Peer.IP);
-                        Peers.TryAdd(netEvent.Peer.ID, new EnetPeer(netEvent.Peer));
+                        var peer = new EnetPeer(netEvent.Peer);
+                        peer.Timeout(_timeout, _timeout, _timeout);
+                        Peers.TryAdd(netEvent.Peer.ID, peer);
                         m.Type = MessageContentType.Connected;
                     }
                     else if (netEvent.Type == EventType.Disconnect)
