@@ -35,7 +35,7 @@ namespace RibCom.Tools
         {
             if (_compressedToUncompressed.TryGetValue(compressedTypeUrl, out string uncompressed))
             {
-                Console.WriteLine($"decompress {compressedTypeUrl} into {TypeUrlDefaultPrefix + uncompressed}");
+                // Console.WriteLine($"decompress {compressedTypeUrl} into {TypeUrlDefaultPrefix + uncompressed}");
                 return TypeUrlDefaultPrefix + uncompressed;
             }
             // Should not happen

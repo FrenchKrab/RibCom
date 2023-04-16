@@ -39,7 +39,7 @@ namespace RibCom.ProtoHelper
                 {
                     message.Content = Google.Protobuf.WellKnownTypes.Any.Parser.ParseFrom(m.Data);
                     message.Content.TypeUrl = _urlCompressor.GetUncompressedTypeUrl(message.Content.TypeUrl);
-                    Console.WriteLine("parsed to any : " + message.Content.ToString());
+                    // Console.WriteLine("parsed to any : " + message.Content.ToString());
                 }
                 return true;
             }
