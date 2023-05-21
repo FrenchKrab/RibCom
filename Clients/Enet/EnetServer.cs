@@ -36,6 +36,7 @@ namespace RibCom.Enet
             a.Port = port;
 
             _host.Create(a, maxClients);
+            _host.SetBandwidthLimit(uint.MaxValue, uint.MaxValue);
             _token = _tokenSource.Token;
         }
 
@@ -89,7 +90,7 @@ namespace RibCom.Enet
                     };
                     if (netEvent.Type == EventType.Receive)
                     {
-                        Console.WriteLine("Packet received from - ID: " + netEvent.Peer.ID + ", IP: " + netEvent.Peer.IP + ", Channel ID: " + netEvent.ChannelID + ", Data length: " + netEvent.Packet.Length);
+                        // Console.WriteLine("Packet received from - ID: " + netEvent.Peer.ID + ", IP: " + netEvent.Peer.IP + ", Channel ID: " + netEvent.ChannelID + ", Data length: " + netEvent.Packet.Length);
                         m.Type = MessageContentType.Data;
                         m.Data = new byte[netEvent.Packet.Length];
                         netEvent.Packet.CopyTo(m.Data);

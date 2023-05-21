@@ -42,6 +42,7 @@ namespace RibCom.Enet
             a.Port = port;
 
             _peer = _host.Connect(a);
+            _host.SetBandwidthLimit(uint.MaxValue, uint.MaxValue);
         }
 
         public void Disconnect()
